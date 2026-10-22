@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ct3n1w73bbm1k"]
+
+[ext_resource type="Script" uid="uid://bnb1l2abpr0et" path="res://inventory/inventory_ui.gd" id="1_cedrj"]
+[ext_resource type="PackedScene" uid="uid://c172g1anbnfg" path="res://inventory/slot.tscn" id="1_hfbh7"]
+[ext_resource type="Script" uid="uid://c6vqvhk0umo1v" path="res://inventory/slot.gd" id="2_2hut1"]
+[ext_resource type="Resource" uid="uid://dyh6kmwnt5dga" path="res://items/key.tres" id="2_7rvkw"]
+
+[node name="InventoryUI" type="CanvasLayer" unique_id=1784124371]
+script = ExtResource("1_cedrj")
+test_item = ExtResource("2_7rvkw")
+
+[node name="Bar" type="PanelContainer" parent="." unique_id=741601807]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Margin" type="MarginContainer" parent="Bar" unique_id=1062927227]
+layout_mode = 2
+
+[node name="Slots" type="HBoxContainer" parent="Bar/Margin" unique_id=1475053664]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Slot" parent="Bar/Margin/Slots" unique_id=1526667312 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+script = ExtResource("2_2hut1")
+
+[node name="Slot2" parent="Bar/Margin/Slots" unique_id=840758062 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot3" parent="Bar/Margin/Slots" unique_id=429346677 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot4" parent="Bar/Margin/Slots" unique_id=2085402011 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot6" parent="Bar/Margin/Slots" unique_id=1203358509 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot7" parent="Bar/Margin/Slots" unique_id=1400499980 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot8" parent="Bar/Margin/Slots" unique_id=209400950 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot9" parent="Bar/Margin/Slots" unique_id=1226283070 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot10" parent="Bar/Margin/Slots" unique_id=374016528 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot11" parent="Bar/Margin/Slots" unique_id=1521573328 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
+
+[node name="Slot5" parent="Bar/Margin/Slots" unique_id=874485252 instance=ExtResource("1_hfbh7")]
+layout_mode = 2
