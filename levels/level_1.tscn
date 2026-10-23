@@ -25,7 +25,7 @@ scale = Vector2(8.993, 9)
 texture = ExtResource("2_bt44k")
 
 [node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=1733283158]
-limit_left = 10
+limit_left = 0
 limit_top = 0
 limit_right = 1920
 limit_bottom = 1080
