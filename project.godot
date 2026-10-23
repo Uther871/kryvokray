@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="krivoy rog"
+run/main_scene="uid://ct6a067q3j50b"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
