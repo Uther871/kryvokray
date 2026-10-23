@@ -2,7 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bnb1l2abpr0et" path="res://inventory/inventory_ui.gd" id="1_cedrj"]
 [ext_resource type="PackedScene" uid="uid://c172g1anbnfg" path="res://inventory/slot.tscn" id="1_hfbh7"]
-[ext_resource type="Script" uid="uid://c6vqvhk0umo1v" path="res://inventory/slot.gd" id="2_2hut1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hut1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.2901961, 0.05490196, 0.078431375, 1)
+border_color = Color(0.54901963, 0.10980392, 0.16470589, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="InventoryUI" type="CanvasLayer" unique_id=1784124371]
 script = ExtResource("1_cedrj")
@@ -10,6 +22,7 @@ script = ExtResource("1_cedrj")
 [node name="Bar" type="PanelContainer" parent="." unique_id=741601807]
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2hut1")
 
 [node name="Margin" type="MarginContainer" parent="Bar" unique_id=1062927227]
 layout_mode = 2
@@ -20,7 +33,6 @@ theme_override_constants/separation = 8
 
 [node name="Slot" parent="Bar/Margin/Slots" unique_id=1526667312 instance=ExtResource("1_hfbh7")]
 layout_mode = 2
-script = ExtResource("2_2hut1")
 
 [node name="Slot2" parent="Bar/Margin/Slots" unique_id=840758062 instance=ExtResource("1_hfbh7")]
 layout_mode = 2
