@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Inventory="*uid://ct3n1w73bbm1k"
 PaintFX="*res://fx/oil_paint_layer.tscn"
+Cursor="*uid://c00cuq13wa2r6"
 
 [display]
 
