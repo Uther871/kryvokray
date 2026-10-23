@@ -1,8 +1,10 @@
 extends CanvasLayer
 
-@export var test_item: ItemData
-
 @onready var slots = $Bar/Margin/Slots
 
-func _ready() -> void:
-	slots.get_child(0).set_item(test_item)
+func add_item(item: ItemData) -> bool:
+	for slot in slots.get_children():
+		if slot.item == null:
+			slot.set_item(item)
+			return true
+	return false

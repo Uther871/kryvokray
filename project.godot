@@ -14,6 +14,10 @@ config/name="krivoy rog"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Inventory="*uid://ct3n1w73bbm1k"
+
 [display]
 
 window/stretch/mode="canvas_items"

@@ -1,7 +1,15 @@
 [gd_scene format=3 uid="uid://bfkvg4awsu4ak"]
 
+[ext_resource type="PackedScene" uid="uid://d1cl4wysqp75p" path="res://items/interactable.tscn" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bokq17b5cfsv7" path="res://items/pickup.tscn" id="1_ig7tw"]
+[ext_resource type="Resource" uid="uid://dyh6kmwnt5dga" path="res://items/key.tres" id="2_0xm2m"]
+
 [node name="Node2D" type="Node2D" unique_id=208581750]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1932047724]
+[node name="Interactable" parent="." unique_id=1697387096 instance=ExtResource("1_h2yge")]
+position = Vector2(800, 350)
+required_item = ExtResource("2_0xm2m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1511922216]
+[node name="pickup" parent="." unique_id=1572774210 instance=ExtResource("1_ig7tw")]
+position = Vector2(500, 350)
+item = ExtResource("2_0xm2m")
