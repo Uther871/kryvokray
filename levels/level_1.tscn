@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ct6a067q3j50b"]
+
+[ext_resource type="Texture2D" uid="uid://bqdyp1384yyms" path="res://assets/background_lvl1.png" id="1_jirdo"]
+[ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="2_bt44k"]
+
+[node name="Level1" type="Node2D" unique_id=296662728]
+
+[node name="background" type="Sprite2D" parent="." unique_id=545153352]
+texture = ExtResource("1_jirdo")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="Chechek" type="Node2D" parent="." unique_id=832540250]
+position = Vector2(400, 740)
+
+[node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=1495508413]
+position = Vector2(101.999985, -137.99998)
+scale = Vector2(8.993, 9)
+texture = ExtResource("2_bt44k")
+
+[node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=1733283158]
+limit_left = 10
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Swamp" type="Sprite2D" parent="." unique_id=1262847391]
+texture = ExtResource("1_jirdo")
+centered = false
+region_enabled = true
+region_rect = Rect2(1920, 0, 1924, 1080)
