@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bqdyp1384yyms" path="res://assets/background_lvl1.png" id="1_jirdo"]
 [ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="2_bt44k"]
 [ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="2_kx6l7"]
+[ext_resource type="PackedScene" uid="uid://bokq17b5cfsv7" path="res://items/pickup.tscn" id="4_n46q3"]
+[ext_resource type="PackedScene" uid="uid://d1cl4wysqp75p" path="res://items/interactable.tscn" id="5_btoec"]
+[ext_resource type="Resource" uid="uid://dyh6kmwnt5dga" path="res://items/key.tres" id="5_gwceb"]
 
 [node name="Level1" type="Node2D" unique_id=296662728]
 
@@ -32,3 +35,11 @@ texture = ExtResource("1_jirdo")
 centered = false
 region_enabled = true
 region_rect = Rect2(1920, 0, 1924, 1080)
+
+[node name="Interactable" parent="." unique_id=1697387096 instance=ExtResource("5_btoec")]
+position = Vector2(1099, 714)
+required_item = ExtResource("5_gwceb")
+
+[node name="pickup" parent="." unique_id=1572774210 instance=ExtResource("4_n46q3")]
+position = Vector2(987, 713)
+item = ExtResource("5_gwceb")
