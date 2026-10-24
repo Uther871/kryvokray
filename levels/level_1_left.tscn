@@ -30,21 +30,21 @@ region_rect = Rect2(0, 0, 1920, 1080)
 [node name="River" type="Sprite2D" parent="." unique_id=642493980]
 z_index = 1
 material = SubResource("ShaderMaterial_river")
-position = Vector2(-51, 0)
-scale = Vector2(1.1786668, 1)
+position = Vector2(91, 0)
+scale = Vector2(1, 1.0722222)
 texture = ExtResource("8_strip")
 centered = false
 
 [node name="RiverZone" parent="." unique_id=1138254502 instance=ExtResource("4_inter")]
 z_index = 1
-position = Vector2(160, 540)
+position = Vector2(327, 540)
 required_item = ExtResource("5_plank")
 result_texture = ExtResource("6_wood")
 result_offset = Vector2(0, 230)
 result_scale = Vector2(10, 10)
 sets_flag = &"plank_used"
 invisible_zone = true
-zone_size = Vector2(340, 1080)
+zone_size = Vector2(500, 1080)
 
 [node name="Chechek" type="Node2D" parent="." unique_id=499101436]
 z_index = 11
@@ -65,7 +65,7 @@ limit_right = 1920
 limit_bottom = 1080
 
 [node name="Swamp" type="Sprite2D" parent="." unique_id=84342171]
-position = Vector2(320, 0)
+scale = Vector2(1.1999999, 1)
 texture = ExtResource("1_bg")
 centered = false
 region_enabled = true
@@ -73,7 +73,7 @@ region_rect = Rect2(2240, 0, 1600, 1080)
 
 [node name="ExitLevel2" parent="." unique_id=835422719 instance=ExtResource("7_exit")]
 z_index = 12
-position = Vector2(160, 540)
+position = Vector2(327, 540)
 target_scene = "res://levels/level_2.tscn"
 requires_flag = &"plank_used"
 
