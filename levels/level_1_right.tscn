@@ -42,7 +42,7 @@ region_rect = Rect2(1920, 0, 1924, 1080)
 position = Vector2(960, 723)
 item = ExtResource("5_dtmw5")
 
-[node name="SwampZone" parent="." instance=ExtResource("4_dvyxu")]
+[node name="SwampZone" parent="." unique_id=1759432938 instance=ExtResource("4_dvyxu")]
 position = Vector2(960, 900)
 required_item = ExtResource("5_dtmw5")
 sets_flag = &"shovel_used"
@@ -50,11 +50,11 @@ invisible_zone = true
 spawn_scene = ExtResource("6_c7op4")
 spawn_item = ExtResource("7_plank")
 spawn_scale = 9.0
-highlight_target = NodePath("../Swamp")
 reply_key = &"swamp"
+highlight_path = NodePath("../Swamp")
 zone_size = Vector2(1920, 360)
 
-[node name="ExitBack" parent="." instance=ExtResource("8_exit")]
+[node name="ExitBack" parent="." unique_id=985560551 instance=ExtResource("8_exit")]
 position = Vector2(75, 540)
 target_scene = "res://levels/level_1.tscn"
 spawn_x = 1750.0

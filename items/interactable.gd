@@ -13,7 +13,8 @@ signal used
 @export var spawn_scene: PackedScene
 @export var spawn_item: ItemData
 @export var spawn_scale := 4.0
-@export var highlight_target: CanvasItem
+## Вузол, який світлішає під курсором (шлях від цього вузла, напр. ../Swamp). Порожньо = власний Sprite2D
+@export var highlight_path: NodePath
 @export var hover_strength := 1.35
 ## Ключ для особливих реплік Чечека (див. replies.gd), напр. "river" або "swamp"
 @export var reply_key: StringName = &""
@@ -46,7 +47,11 @@ func _ready() -> void:
 		if Game.data.has(_flag):
 			_spawn.call_deferred(Game.data[_flag], false)
 		return
-	var target: CanvasItem = highlight_target if highlight_target else sprite
+	var target: CanvasItem = sprite
+	if not highlight_path.is_empty():
+		var node := get_node_or_null(highlight_path)
+		if node is CanvasItem:
+			target = node
 	HoverFX.register(self, target, hover_strength)
 
 func _apply_zone() -> void:

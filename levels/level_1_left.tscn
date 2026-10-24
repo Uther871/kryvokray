@@ -45,6 +45,7 @@ result_scale = Vector2(10, 10)
 sets_flag = &"plank_used"
 invisible_zone = true
 reply_key = &"river"
+highlight_path = NodePath("../River")
 zone_size = Vector2(500, 1080)
 
 [node name="Chechek" type="Node2D" parent="." unique_id=499101436]

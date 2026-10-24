@@ -1,18 +1,58 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c0xqn3dgvfdym"]
 
-[node name="Level2" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bqdyp1384yyms" path="res://assets/background_lvl1.png" id="1_bg"]
+[ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="2_chechek"]
+[ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="3_chechek"]
+[ext_resource type="PackedScene" path="res://characters/grets.tscn" id="4_grets"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="5_exit"]
 
-[node name="Bg" type="ColorRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0.12, 0.02, 0.03, 1)
+[node name="Level2" type="Node2D" unique_id=1428953293]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 560.0
-offset_top = 480.0
-offset_right = 1360.0
-offset_bottom = 600.0
-theme_override_font_sizes/font_size = 56
-text = "Рівень 2 (заглушка)"
-horizontal_alignment = 1
+[node name="background" type="Sprite2D" parent="." unique_id=208740960]
+texture = ExtResource("1_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="HutPlaceholder" type="Node2D" parent="." unique_id=1232532876]
+
+[node name="Walls" type="Polygon2D" parent="HutPlaceholder" unique_id=1914819185]
+color = Color(0.2, 0.07, 0.07, 1)
+polygon = PackedVector2Array(980, 480, 1300, 480, 1300, 790, 980, 790)
+
+[node name="BrokenRoof" type="Polygon2D" parent="HutPlaceholder" unique_id=535546578]
+color = Color(0.13, 0.03, 0.04, 1)
+polygon = PackedVector2Array(940, 490, 1060, 370, 1130, 420, 1190, 360, 1340, 490)
+
+[node name="Door" type="Polygon2D" parent="HutPlaceholder" unique_id=571093286]
+color = Color(0.06, 0.01, 0.02, 1)
+polygon = PackedVector2Array(1080, 620, 1180, 620, 1180, 790, 1080, 790)
+
+[node name="Grets" parent="." unique_id=595379407 instance=ExtResource("4_grets")]
+position = Vector2(1480, 740)
+
+[node name="Chechek" type="Node2D" parent="." unique_id=1597554987]
+position = Vector2(300, 740)
+script = ExtResource("2_chechek")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=701637297]
+position = Vector2(102, -115)
+scale = Vector2(8.993, 9)
+texture = ExtResource("3_chechek")
+
+[node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=1801621123]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Swamp" type="Sprite2D" parent="." unique_id=1998661785]
+texture = ExtResource("1_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(1920, 0, 1924, 1080)
+
+[node name="ExitBack" parent="." unique_id=172349178 instance=ExtResource("5_exit")]
+position = Vector2(75, 540)
+target_scene = "res://levels/level_1_left.tscn"
+spawn_x = 450.0

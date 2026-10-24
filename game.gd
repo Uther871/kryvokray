@@ -11,9 +11,13 @@ const WRONG_USE_TEXT := "That’s not gonna work!"
 const BUBBLE_SCALE := 11.0                      # dialog.png 32x32 -> 352x352
 const BUBBLE_TIP := Vector2(16, 310)            # кінчик «хвостика» на бульбашці (у пікселях)
 const BUBBLE_HEAD_OFFSET := Vector2(50, -105)   # де кінчик має бути відносно спрайта Чечека
+const BUBBLE_FONT_SIZES := [32, 16]            # пікселтний шрифт: розміри кратні 16
 const BUBBLE_FADE_IN := 0.25
 const BUBBLE_HOLD := 2.0
 const BUBBLE_FADE_OUT := 0.4
+
+## Головний шрифт гри (Pixel Ultima Bold), без згладжування, щоб лишався чітким
+var font: FontFile
 
 var flags := {}
 var data := {}
@@ -29,6 +33,10 @@ var _bubble_tween: Tween
 var _bubble_flipped := false
 
 func _ready() -> void:
+	font = load("res://assets/fonts/pixel-ultima-bold.ttf")
+	font.antialiasing = TextServer.FONT_ANTIALIASING_NONE
+	font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
+	font.hinting = TextServer.HINTING_NONE
 	var layer := CanvasLayer.new()
 	layer.layer = 90
 	add_child(layer)
@@ -61,8 +69,8 @@ func _build_bubble() -> void:
 	_bubble_tex.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_bubble.add_child(_bubble_tex)
 	_bubble_label = Label.new()
-	_bubble_label.add_theme_font_override("font", load("res://assets/Bristol.ttf"))
-	_bubble_label.add_theme_font_size_override("font_size", 40)
+	_bubble_label.add_theme_font_override("font", font)
+	_bubble_label.add_theme_font_size_override("font_size", BUBBLE_FONT_SIZES[0])
 	_bubble_label.add_theme_color_override("font_color", Color(0.08, 0.01, 0.03))
 	_bubble_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_bubble_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -84,9 +92,8 @@ func _set_bubble_flip(flipped: bool) -> void:
 func say(text := WRONG_USE_TEXT) -> void:
 	_bubble_label.text = text
 	# Підбираємо найбільший розмір шрифту, при якому текст вміщується в бульбашку
-	var font: Font = _bubble_label.get_theme_font("font")
-	var chosen := 40
-	for fs in [40, 36, 32, 29, 26]:
+	var chosen: int = BUBBLE_FONT_SIZES[0]
+	for fs in BUBBLE_FONT_SIZES:
 		chosen = fs
 		if font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, _bubble_label.size.x, fs).y <= _bubble_label.size.y:
 			break

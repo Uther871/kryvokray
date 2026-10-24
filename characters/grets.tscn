@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://characters/npc.gd" id="1_npc"]
+[ext_resource type="Texture2D" uid="uid://b7u804svpqvi0" path="res://assets/Grets.png" id="2_grets"]
+[ext_resource type="Script" path="res://dialogue/grets_riddle.gd" id="3_riddle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grets"]
+size = Vector2(160, 230)
+
+[node name="Grets" type="Area2D"]
+script = ExtResource("1_npc")
+dialogue = ExtResource("3_riddle")
+ally_flag = &"grets_ally"
+reply_key = &"grets"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -115)
+scale = Vector2(9, 9)
+texture = ExtResource("2_grets")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -115)
+shape = SubResource("RectangleShape2D_grets")
