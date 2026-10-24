@@ -24,6 +24,7 @@ var data := {}
 var next_spawn_x := -1.0
 
 var _fade: ColorRect
+var _vignette: ColorRect
 var _busy := false
 
 var _bubble: Control
@@ -46,7 +47,25 @@ func _ready() -> void:
 	_fade.modulate.a = 0.0
 	layer.add_child(_fade)
 	_fade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_build_vignette()
 	_build_bubble()
+
+func _build_vignette() -> void:
+	# Шар 1: над світом, під інвентарем (шар 3), діалогом і бульбашкою
+	var layer := CanvasLayer.new()
+	layer.layer = 1
+	add_child(layer)
+	_vignette = ColorRect.new()
+	_vignette.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var mat := ShaderMaterial.new()
+	mat.shader = load("res://fx/vignette.gdshader")
+	_vignette.material = mat
+	layer.add_child(_vignette)
+	_vignette.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+## Сила віньєтки 0..1 (0 = вимкнути). Можна викликати з будь-якої кімнати.
+func set_vignette(strength: float) -> void:
+	(_vignette.material as ShaderMaterial).set_shader_parameter("strength", strength)
 
 func _build_bubble() -> void:
 	var layer := CanvasLayer.new()

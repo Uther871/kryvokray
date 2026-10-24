@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bokq17b5cfsv7" path="res://items/pickup.tscn" id="6_c7op4"]
 [ext_resource type="Resource" uid="uid://bfjhsu3r6r47o" path="res://items/plank.tres" id="7_plank"]
 [ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="8_exit"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="90_steam"]
+[ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="91_light"]
 
 [node name="Level1" type="Node2D" unique_id=296662728]
 
@@ -58,3 +60,15 @@ zone_size = Vector2(1920, 360)
 position = Vector2(75, 540)
 target_scene = "res://levels/level_1.tscn"
 spawn_x = 1750.0
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.62, 0.55, 0.62, 1)
+
+[node name="SwampGlow" parent="." instance=ExtResource("91_light")]
+position = Vector2(960, 880)
+color = Color(1, 0.3, 0.25, 1)
+energy = 0.55
+texture_scale = 9.0
+flicker = 0.08
+
+[node name="Steam" parent="." instance=ExtResource("90_steam")]

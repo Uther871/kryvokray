@@ -1,0 +1,38 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://fx/steam.gdshader" id="1_shader"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a"]
+noise_type = 3
+seed = 11
+frequency = 0.012
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b"]
+noise_type = 3
+seed = 77
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a"]
+width = 512
+height = 512
+seamless = true
+noise = SubResource("FastNoiseLite_a")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b"]
+width = 512
+height = 512
+seamless = true
+noise = SubResource("FastNoiseLite_b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_steam"]
+shader = ExtResource("1_shader")
+shader_parameter/noise_a = SubResource("NoiseTexture2D_a")
+shader_parameter/noise_b = SubResource("NoiseTexture2D_b")
+
+[node name="Steam" type="ColorRect"]
+z_index = 5
+material = SubResource("ShaderMaterial_steam")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(1, 1, 1, 1)

@@ -17,6 +17,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [node name="InventoryUI" type="CanvasLayer" unique_id=1784124371]
+layer = 3
 script = ExtResource("1_cedrj")
 
 [node name="Bar" type="PanelContainer" parent="." unique_id=741601807]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="2_bt44k"]
 [ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="2_kx6l7"]
 [ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="9_exit"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="90_steam"]
 
 [node name="Level1" type="Node2D" unique_id=296662728]
 
@@ -43,3 +44,8 @@ spawn_x = 1750.0
 position = Vector2(1845, 540)
 target_scene = "res://levels/level_1_right.tscn"
 spawn_x = 150.0
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.62, 0.55, 0.62, 1)
+
+[node name="Steam" parent="." instance=ExtResource("90_steam")]

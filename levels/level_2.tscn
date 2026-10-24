@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="2_chechek"]
 [ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="3_chechek"]
 [ext_resource type="PackedScene" path="res://characters/grets.tscn" id="4_grets"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="90_steam"]
+[ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="91_light"]
 
 [node name="Level2" type="Node2D" unique_id=1428953293]
 
@@ -24,7 +26,7 @@ centered = false
 position = Vector2(666, 749)
 
 [node name="Chechek" type="Node2D" parent="." unique_id=1597554987]
-position = Vector2(1556, 749)
+position = Vector2(1548, 749)
 script = ExtResource("2_chechek")
 
 [node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=701637297]
@@ -33,9 +35,9 @@ scale = Vector2(8.993, 9)
 texture = ExtResource("3_chechek")
 
 [node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=1801621123]
-limit_left = -2
+limit_left = 0
 limit_top = 0
-limit_right = 1918
+limit_right = 1920
 limit_bottom = 1080
 
 [node name="Swamp" type="Sprite2D" parent="." unique_id=1998661785]
@@ -43,3 +45,22 @@ texture = ExtResource("1_bg")
 centered = false
 region_enabled = true
 region_rect = Rect2(1920, 0, 1924, 1080)
+
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=151990662]
+color = Color(0.62, 0.55, 0.62, 1)
+
+[node name="WindowLightLeft" parent="." unique_id=101569746 instance=ExtResource("91_light")]
+position = Vector2(205, 575)
+color = Color(1, 0.4, 0.33, 1)
+energy = 1.1
+texture_scale = 2.6
+flicker = 0.12
+
+[node name="WindowLightRight" parent="." unique_id=1994537583 instance=ExtResource("91_light")]
+position = Vector2(604, 575)
+color = Color(1, 0.4, 0.33, 1)
+energy = 1.1
+texture_scale = 2.8
+flicker = 0.12
+
+[node name="Steam" parent="." unique_id=1064596052 instance=ExtResource("90_steam")]

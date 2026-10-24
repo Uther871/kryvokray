@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="7_exit"]
 [ext_resource type="Texture2D" uid="uid://nh3xfbg175a6" path="res://assets/river_strip.png" id="8_strip"]
 [ext_resource type="Shader" uid="uid://sjixqesdajf2" path="res://fx/river.gdshader" id="9_shader"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="90_steam"]
+[ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="91_light"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_river"]
 shader = ExtResource("9_shader")
@@ -86,3 +88,15 @@ z_index = 12
 position = Vector2(1845, 540)
 target_scene = "res://levels/level_1.tscn"
 spawn_x = 150.0
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.62, 0.55, 0.62, 1)
+
+[node name="RiverGlow" parent="." instance=ExtResource("91_light")]
+position = Vector2(330, 620)
+color = Color(1, 0.32, 0.2, 1)
+energy = 1.3
+texture_scale = 6.0
+flicker = 0.1
+
+[node name="Steam" parent="." instance=ExtResource("90_steam")]
