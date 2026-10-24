@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://c4gred35f601e"]
+
+[ext_resource type="Texture2D" uid="uid://1xh337ijo02q" path="res://assets/background_lvl1_river.png" id="1_bg"]
+[ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="2_chechek"]
+[ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="3_chechek"]
+[ext_resource type="PackedScene" uid="uid://d1cl4wysqp75p" path="res://items/interactable.tscn" id="4_inter"]
+[ext_resource type="Resource" uid="uid://bfjhsu3r6r47o" path="res://items/plank.tres" id="5_plank"]
+[ext_resource type="Texture2D" uid="uid://s2nmdd5g7nyl" path="res://assets/peaceofwood.png" id="6_wood"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="7_exit"]
+[ext_resource type="Texture2D" uid="uid://nh3xfbg175a6" path="res://assets/river_strip.png" id="8_strip"]
+[ext_resource type="Shader" uid="uid://sjixqesdajf2" path="res://fx/river.gdshader" id="9_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_river"]
+shader = ExtResource("9_shader")
+shader_parameter/far_width = 0.55
+shader_parameter/far_fog = 0.55
+shader_parameter/fog_color = Color(0.12, 0.01, 0.02, 1)
+shader_parameter/flow_speed = 1.6
+shader_parameter/ripple_strength = 0.22
+shader_parameter/bank_shade = 0.45
+
+[node name="Level1Left" type="Node2D" unique_id=373685776]
+
+[node name="background" type="Sprite2D" parent="." unique_id=853265273]
+texture = ExtResource("1_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="River" type="Sprite2D" parent="." unique_id=642493980]
+z_index = 1
+material = SubResource("ShaderMaterial_river")
+position = Vector2(-51, 0)
+scale = Vector2(1.1786668, 1)
+texture = ExtResource("8_strip")
+centered = false
+
+[node name="RiverZone" parent="." unique_id=1138254502 instance=ExtResource("4_inter")]
+z_index = 1
+position = Vector2(160, 540)
+required_item = ExtResource("5_plank")
+result_texture = ExtResource("6_wood")
+result_offset = Vector2(0, 230)
+result_scale = Vector2(10, 10)
+sets_flag = &"plank_used"
+invisible_zone = true
+zone_size = Vector2(340, 1080)
+
+[node name="Chechek" type="Node2D" parent="." unique_id=499101436]
+z_index = 11
+position = Vector2(1700, 740)
+script = ExtResource("2_chechek")
+min_x = 450.0
+unlock_flag = &"plank_used"
+
+[node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=635877765]
+position = Vector2(102, -115)
+scale = Vector2(8.993, 9)
+texture = ExtResource("3_chechek")
+
+[node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=431955206]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Swamp" type="Sprite2D" parent="." unique_id=84342171]
+position = Vector2(320, 0)
+texture = ExtResource("1_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(2240, 0, 1600, 1080)
+
+[node name="ExitLevel2" parent="." unique_id=835422719 instance=ExtResource("7_exit")]
+z_index = 12
+position = Vector2(160, 540)
+target_scene = "res://levels/level_2.tscn"
+requires_flag = &"plank_used"
+
+[node name="ExitBack" parent="." unique_id=501834405 instance=ExtResource("7_exit")]
+z_index = 12
+position = Vector2(1845, 540)
+target_scene = "res://levels/level_1.tscn"
+spawn_x = 150.0

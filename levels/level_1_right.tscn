@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d1cl4wysqp75p" path="res://items/interactable.tscn" id="4_dvyxu"]
 [ext_resource type="Resource" uid="uid://drkkmrqt45btp" path="res://items/shovel.tres" id="5_dtmw5"]
 [ext_resource type="PackedScene" uid="uid://bokq17b5cfsv7" path="res://items/pickup.tscn" id="6_c7op4"]
+[ext_resource type="Resource" uid="uid://bfjhsu3r6r47o" path="res://items/plank.tres" id="7_plank"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="8_exit"]
 
 [node name="Level1" type="Node2D" unique_id=296662728]
 
@@ -40,6 +42,18 @@ region_rect = Rect2(1920, 0, 1924, 1080)
 position = Vector2(960, 723)
 item = ExtResource("5_dtmw5")
 
-[node name="SwampZone" parent="." unique_id=1697387096 instance=ExtResource("4_dvyxu")]
-position = Vector2(945, 933)
-scale = Vector2(30, 3)
+[node name="SwampZone" parent="." instance=ExtResource("4_dvyxu")]
+position = Vector2(960, 900)
+required_item = ExtResource("5_dtmw5")
+sets_flag = &"shovel_used"
+invisible_zone = true
+spawn_scene = ExtResource("6_c7op4")
+spawn_item = ExtResource("7_plank")
+spawn_scale = 9.0
+highlight_target = NodePath("../Swamp")
+zone_size = Vector2(1920, 360)
+
+[node name="ExitBack" parent="." instance=ExtResource("8_exit")]
+position = Vector2(75, 540)
+target_scene = "res://levels/level_1.tscn"
+spawn_x = 1750.0

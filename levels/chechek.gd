@@ -3,6 +3,8 @@ extends Node2D
 @export var speed := 500.0
 @export var min_x := 100.0
 @export var max_x := 1750.0
+@export var unlock_flag: StringName = &""
+@export var unlocked_min_x := 100.0
 
 @export_group("Качання")
 @export var sway_angle_deg := 5.0
@@ -18,8 +20,20 @@ var _on_arrive := Callable()
 
 func _ready() -> void:
 	add_to_group("player")
+	if Game.next_spawn_x >= 0.0:
+		position.x = Game.next_spawn_x
+		Game.next_spawn_x = -1.0
 	target_x = position.x
 	_base_offset = sprite.offset
+	if unlock_flag != &"":
+		if Game.has_flag(unlock_flag):
+			min_x = unlocked_min_x
+		else:
+			Game.flag_set.connect(_on_flag_set)
+
+func _on_flag_set(id: StringName) -> void:
+	if id == unlock_flag:
+		min_x = unlocked_min_x
 
 func walk_to(x: float, on_arrive: Callable = Callable(), stop_distance := 0.0) -> void:
 	var dx := x - position.x

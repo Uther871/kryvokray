@@ -5,14 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sa2ql"]
 size = Vector2(128, 128)
 
-[node name="Interactable" type="Area2D" unique_id=1697387096]
+[node name="Interactable" type="Area2D"]
 script = ExtResource("1_jcy0q")
-stop_distance = null
-sets_flag = null
-invisible_zone = null
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=766996812]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=399753908]
-position = Vector2(-0.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sa2ql")
