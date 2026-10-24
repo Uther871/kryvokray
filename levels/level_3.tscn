@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://chlkyf1wq0u38"]
+
+[ext_resource type="Script" uid="uid://bm4helry4v4av" path="res://levels/level_3.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dptut6l4301p4" path="res://assets/background_lvl1-export.png" id="2_bg"]
+[ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="3_chechek"]
+[ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="4_chechek_tex"]
+[ext_resource type="PackedScene" path="res://characters/grets.tscn" id="5_grets"]
+[ext_resource type="PackedScene" path="res://characters/gate_head.tscn" id="6_head"]
+[ext_resource type="Script" uid="uid://xthgce35pcte" path="res://dialogue/head_talk.gd" id="7_talk"]
+[ext_resource type="Script" uid="uid://b2e0qosnwe6oj" path="res://dialogue/head_quiz.gd" id="8_quiz"]
+[ext_resource type="Resource" path="res://items/pebble.tres" id="9_pebble"]
+[ext_resource type="Texture2D" uid="uid://ddqhbtr6nj566" path="res://assets/pebble.png" id="10_pebble_tex"]
+[ext_resource type="PackedScene" uid="uid://bokq17b5cfsv7" path="res://items/pickup.tscn" id="11_pickup"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="12_exit"]
+[ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="13_light"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="14_steam"]
+
+[node name="Level3" type="Node2D" unique_id=198495608]
+script = ExtResource("1_script")
+
+[node name="background" type="Sprite2D" parent="." unique_id=969166853]
+position = Vector2(0, -120)
+texture = ExtResource("2_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1200)
+
+[node name="GateClosed" type="Sprite2D" parent="." unique_id=1278293706]
+position = Vector2(404, -120)
+texture = ExtResource("2_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(3849, 0, 1112, 1200)
+
+[node name="GateOpen" type="Sprite2D" parent="." unique_id=909163878]
+position = Vector2(385, -120)
+texture = ExtResource("2_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(4974, 0, 1089, 1200)
+
+[node name="HeadLeft" parent="." unique_id=152556494 instance=ExtResource("6_head")]
+position = Vector2(574, 232)
+head_texture = ExtResource("2_bg")
+head_region = Rect2(3849, 192, 340, 320)
+dialogue = ExtResource("7_talk")
+reply_key = &"head"
+plug_item = ExtResource("9_pebble")
+plug_flag = &"head1_plugged"
+plug_texture = ExtResource("10_pebble_tex")
+plug_offset = Vector2(-9, 105)
+
+[node name="HeadRight" parent="." unique_id=1459144079 instance=ExtResource("6_head")]
+position = Vector2(1347, 246)
+head_texture = ExtResource("2_bg")
+head_region = Rect2(4622, 210, 340, 312)
+dialogue = ExtResource("8_quiz")
+reply_key = &"head"
+
+[node name="Pebble" parent="." unique_id=530548481 instance=ExtResource("11_pickup")]
+position = Vector2(1307.495, 590.52)
+item = ExtResource("9_pebble")
+world_scale = 3.0
+
+[node name="Chechek" type="Node2D" parent="." unique_id=701376087]
+position = Vector2(300, 749)
+script = ExtResource("3_chechek")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=808053174]
+position = Vector2(102, -115)
+scale = Vector2(8.993, 9)
+texture = ExtResource("4_chechek_tex")
+
+[node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=710903873]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Grets" parent="." unique_id=630847464 instance=ExtResource("5_grets")]
+position = Vector2(130, 749)
+
+[node name="Swamp" type="Sprite2D" parent="." unique_id=1813039345]
+position = Vector2(0, -120)
+texture = ExtResource("2_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(1924, 0, 1920, 1200)
+
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=1967089927]
+color = Color(0.62, 0.55, 0.62, 1)
+
+[node name="EyeLightLeft" parent="." unique_id=793847471 instance=ExtResource("13_light")]
+position = Vector2(565, 265)
+color = Color(1, 0.12, 0.1, 1)
+energy = 0.9
+texture_scale = 2.4
+flicker = 0.15
+
+[node name="EyeLightRight" parent="." unique_id=1425329277 instance=ExtResource("13_light")]
+position = Vector2(1342, 286)
+color = Color(1, 0.12, 0.1, 1)
+energy = 0.9
+texture_scale = 2.4
+flicker = 0.15
+
+[node name="ExitGate" parent="." unique_id=745032251 instance=ExtResource("12_exit")]
+position = Vector2(925, 540)
+scale = Vector2(3, 1)
+target_scene = "res://levels/level_4.tscn"
+spawn_x = 150.0
+requires_flag = &"gate_open"
+
+[node name="Steam" parent="." unique_id=18855773 instance=ExtResource("14_steam")]

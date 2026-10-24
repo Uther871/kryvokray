@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" uid="uid://0e1dupy38its" path="res://inventory/item_data.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/pebble.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"pebble"
+display_name = "Камінець"
+icon = ExtResource("2_icon")

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://characters/grets.tscn" id="4_grets"]
 [ext_resource type="PackedScene" path="res://fx/steam.tscn" id="90_steam"]
 [ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="91_light"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="92_exit"]
 
 [node name="Level2" type="Node2D" unique_id=1428953293]
 
@@ -64,3 +65,9 @@ texture_scale = 2.8
 flicker = 0.12
 
 [node name="Steam" parent="." unique_id=1064596052 instance=ExtResource("90_steam")]
+
+[node name="ExitRight" parent="." instance=ExtResource("92_exit")]
+position = Vector2(1845, 540)
+target_scene = "res://levels/level_3.tscn"
+spawn_x = 150.0
+requires_flag = &"grets_ally"

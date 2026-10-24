@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://characters/gate_head.gd" id="1_head"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_head"]
+size = Vector2(340, 320)
+
+[node name="GateHead" type="Area2D"]
+script = ExtResource("1_head")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_head")

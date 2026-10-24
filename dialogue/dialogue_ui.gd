@@ -7,7 +7,8 @@ extends CanvasLayer
 ##
 ## Кроки (steps) — масив словників:
 ##   {"who": "Grets", "say": "Текст репліки"}
-##   {"choice": ["А", "Б", "В"], "correct": 2, "right": [кроки], "wrong": [кроки]}
+##   {"choice": ["А", "Б", "В"], "correct": 2, "right": [кроки], "wrong": [кроки], "retry": true}
+##     retry = false: після хибної відповіді діалог одразу закінчується (гравця «викидає»)
 ##   {"flag": "ім'я_прапорця"}   — ставить прапорець у Game
 
 signal finished
@@ -21,6 +22,7 @@ const CHARS_PER_SEC := 45.0
 const SPEAKER_COLORS := {
 	"Chechek": Color(0.98, 0.85, 0.35),
 	"Grets": Color(0.95, 0.5, 0.55),
+	"Head": Color(0.78, 0.62, 0.64),
 }
 
 var _root: Control
@@ -29,6 +31,7 @@ var _text: Label
 var _choices: VBoxContainer
 var _advance := false
 var _chosen := -1
+var _aborted := false
 
 func _ready() -> void:
 	layer = 50
@@ -96,6 +99,7 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func play(steps: Array) -> void:
+	_aborted = false
 	_root.visible = true
 	await _run(steps)
 	_root.visible = false
@@ -104,6 +108,8 @@ func play(steps: Array) -> void:
 
 func _run(steps: Array) -> void:
 	for step in steps:
+		if _aborted:
+			return
 		if step.has("say"):
 			await _say(step["who"], step["say"])
 		elif step.has("choice"):
@@ -114,6 +120,9 @@ func _run(steps: Array) -> void:
 					await _run(step.get("right", []))
 					break
 				await _run(step.get("wrong", []))
+				if not step.get("retry", true):
+					_aborted = true
+					return
 		elif step.has("flag"):
 			Game.set_flag(StringName(step["flag"]))
 
