@@ -44,8 +44,10 @@ func _ready() -> void:
 	panel.anchor_right = 0.9
 	panel.anchor_top = 1.0
 	panel.anchor_bottom = 1.0
-	panel.offset_top = -300.0
-	panel.offset_bottom = -40.0
+	# Висота за вмістом, росте ВГОРУ від нижнього краю, щоб усі відповіді були видні
+	panel.offset_top = -90.0
+	panel.offset_bottom = -90.0
+	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	panel.add_theme_stylebox_override("panel", _box(PANEL_BG, PANEL_BORDER, 24))
 	_root.add_child(panel)
 

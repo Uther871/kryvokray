@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="3_chechek"]
 [ext_resource type="PackedScene" path="res://characters/grets.tscn" id="4_grets"]
 [ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="5_exit"]
+[ext_resource type="Texture2D" uid="uid://b6sm0vecgelm0" path="res://assets/house1.png" id="6_house"]
 
 [node name="Level2" type="Node2D" unique_id=1428953293]
 
@@ -14,22 +15,14 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1080)
 
-[node name="HutPlaceholder" type="Node2D" parent="." unique_id=1232532876]
-
-[node name="Walls" type="Polygon2D" parent="HutPlaceholder" unique_id=1914819185]
-color = Color(0.2, 0.07, 0.07, 1)
-polygon = PackedVector2Array(980, 480, 1300, 480, 1300, 790, 980, 790)
-
-[node name="BrokenRoof" type="Polygon2D" parent="HutPlaceholder" unique_id=535546578]
-color = Color(0.13, 0.03, 0.04, 1)
-polygon = PackedVector2Array(940, 490, 1060, 370, 1130, 420, 1190, 360, 1340, 490)
-
-[node name="Door" type="Polygon2D" parent="HutPlaceholder" unique_id=571093286]
-color = Color(0.06, 0.01, 0.02, 1)
-polygon = PackedVector2Array(1080, 620, 1180, 620, 1180, 790, 1080, 790)
+[node name="House" type="Sprite2D" parent="."]
+position = Vector2(700, -170)
+scale = Vector2(3, 3)
+texture = ExtResource("6_house")
+centered = false
 
 [node name="Grets" parent="." unique_id=595379407 instance=ExtResource("4_grets")]
-position = Vector2(1480, 740)
+position = Vector2(1700, 740)
 
 [node name="Chechek" type="Node2D" parent="." unique_id=1597554987]
 position = Vector2(300, 740)
