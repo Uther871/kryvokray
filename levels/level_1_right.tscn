@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dos5t138rihm0"]
+
+[ext_resource type="Texture2D" uid="uid://bqdyp1384yyms" path="res://assets/background_lvl1.png" id="1_2j5l0"]
+[ext_resource type="Script" uid="uid://elotoqivu4ys" path="res://levels/chechek.gd" id="2_xcoeh"]
+[ext_resource type="Texture2D" uid="uid://cwqq5wp2fv0mw" path="res://assets/CHechek.png" id="3_ky6kv"]
+[ext_resource type="PackedScene" uid="uid://d1cl4wysqp75p" path="res://items/interactable.tscn" id="4_dvyxu"]
+[ext_resource type="Resource" uid="uid://drkkmrqt45btp" path="res://items/shovel.tres" id="5_dtmw5"]
+[ext_resource type="PackedScene" uid="uid://bokq17b5cfsv7" path="res://items/pickup.tscn" id="6_c7op4"]
+
+[node name="Level1" type="Node2D" unique_id=296662728]
+
+[node name="background" type="Sprite2D" parent="." unique_id=545153352]
+texture = ExtResource("1_2j5l0")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="Chechek" type="Node2D" parent="." unique_id=832540250]
+position = Vector2(400, 740)
+script = ExtResource("2_xcoeh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=1495508413]
+position = Vector2(101.999985, -114.999985)
+scale = Vector2(8.993, 9)
+texture = ExtResource("3_ky6kv")
+
+[node name="Camera2D" type="Camera2D" parent="Chechek/Sprite2D" unique_id=1733283158]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Swamp" type="Sprite2D" parent="." unique_id=1262847391]
+texture = ExtResource("1_2j5l0")
+centered = false
+region_enabled = true
+region_rect = Rect2(1920, 0, 1924, 1080)
+
+[node name="Shovel" parent="." unique_id=1572774210 instance=ExtResource("6_c7op4")]
+position = Vector2(960, 723)
+item = ExtResource("5_dtmw5")
+
+[node name="SwampZone" parent="." unique_id=1697387096 instance=ExtResource("4_dvyxu")]
+position = Vector2(945, 933)
+scale = Vector2(30, 3)

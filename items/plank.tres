@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bfjhsu3r6r47o"]
+
+[ext_resource type="Texture2D" uid="uid://s2nmdd5g7nyl" path="res://assets/peaceofwood.png" id="1_eq3sy"]
+[ext_resource type="Script" uid="uid://0e1dupy38its" path="res://inventory/item_data.gd" id="1_upd3e"]
+
+[resource]
+script = ExtResource("1_upd3e")
+id = &"plank"
+display_name = "Дошка"
+icon = ExtResource("1_eq3sy")
+metadata/_custom_type_script = "uid://0e1dupy38its"

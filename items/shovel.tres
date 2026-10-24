@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://drkkmrqt45btp"]
+
+[ext_resource type="Script" uid="uid://0e1dupy38its" path="res://inventory/item_data.gd" id="1_1dg4e"]
+[ext_resource type="Texture2D" uid="uid://mvuuawb8ip1h" path="res://assets/shovel.png" id="1_1wpxi"]
+
+[resource]
+script = ExtResource("1_1dg4e")
+id = &"shovel"
+display_name = "Лопата"
+icon = ExtResource("1_1wpxi")
+metadata/_custom_type_script = "uid://0e1dupy38its"

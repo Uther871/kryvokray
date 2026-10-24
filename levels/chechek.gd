@@ -22,8 +22,11 @@ func _ready() -> void:
 	_base_offset = sprite.offset
 
 func walk_to(x: float, on_arrive: Callable = Callable(), stop_distance := 0.0) -> void:
-	var dir := signf(x - position.x)
-	target_x = clampf(x - dir * stop_distance, min_x, max_x)
+	var dx := x - position.x
+	if absf(dx) <= stop_distance:
+		target_x = position.x
+	else:
+		target_x = clampf(x - signf(dx) * stop_distance, min_x, max_x)
 	_on_arrive = on_arrive
 
 func _unhandled_input(event: InputEvent) -> void:
