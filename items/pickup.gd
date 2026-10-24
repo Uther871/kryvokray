@@ -1,6 +1,8 @@
 @tool
 extends Area2D
 
+const GLOW_PAD := 8
+
 @export var item: ItemData:
 	set(value):
 		item = value
@@ -11,11 +13,14 @@ extends Area2D
 		world_scale = value
 		if is_node_ready():
 			_update_sprite()
+## Світиться, щоб виділятись на фоні
+@export var glow := true
 @export var stop_distance := 150.0
 @export var requires_flag: StringName = &""
 @export var persistent_id: StringName = &""
 
 var _flag: StringName
+var _glow: Sprite2D
 
 func _ready() -> void:
 	_update_sprite()
@@ -42,18 +47,35 @@ func _update_sprite() -> void:
 	if item == null or item.icon == null:
 		return
 	s.texture = item.icon
+	var img := item.icon.get_image()
+	if img == null:
+		return
 	# Зона кліку підганяється під справжні (непрозорі) пікселі іконки
 	var cs := get_node_or_null("CollisionShape2D") as CollisionShape2D
-	var img := item.icon.get_image()
-	if cs == null or img == null:
-		return
 	var r := img.get_used_rect()
-	if r.size == Vector2i.ZERO:
-		return
-	var rect := RectangleShape2D.new()
-	rect.size = Vector2(r.size) * world_scale + Vector2(32, 32)
-	cs.shape = rect
-	cs.position = (Vector2(r.position) + Vector2(r.size) / 2.0 - Vector2(img.get_size()) / 2.0) * world_scale
+	if cs and r.size != Vector2i.ZERO:
+		var rect := RectangleShape2D.new()
+		rect.size = Vector2(r.size) * world_scale + Vector2(32, 32)
+		cs.shape = rect
+		cs.position = (Vector2(r.position) + Vector2(r.size) / 2.0 - Vector2(img.get_size()) / 2.0) * world_scale
+	if glow and not Engine.is_editor_hint():
+		_update_glow(img)
+
+func _update_glow(img: Image) -> void:
+	if _glow == null:
+		_glow = Sprite2D.new()
+		_glow.name = "Glow"
+		var mat := ShaderMaterial.new()
+		mat.shader = load("res://fx/glow.gdshader")
+		_glow.material = mat
+		add_child(_glow)
+		move_child(_glow, 0)
+	var src: Image = img.duplicate()
+	src.convert(Image.FORMAT_RGBA8)
+	var padded := Image.create(src.get_width() + GLOW_PAD * 2, src.get_height() + GLOW_PAD * 2, false, Image.FORMAT_RGBA8)
+	padded.blit_rect(src, Rect2i(Vector2i.ZERO, src.get_size()), Vector2i(GLOW_PAD, GLOW_PAD))
+	_glow.texture = ImageTexture.create_from_image(padded)
+	_glow.scale = Vector2.ONE * world_scale
 
 func _on_flag_set(id: StringName) -> void:
 	if id == requires_flag:
@@ -65,7 +87,6 @@ func _set_active(on: bool) -> void:
 
 func _input_event(_viewport, event, _shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("[pickup ", name, "] клік, предмет: ", item.id if item else "НЕМАЄ")
 		var player = get_tree().get_first_node_in_group("player")
 		if player:
 			player.walk_to(global_position.x, _pick_up, stop_distance)
@@ -73,9 +94,7 @@ func _input_event(_viewport, event, _shape_idx) -> void:
 			_pick_up()
 
 func _pick_up() -> void:
-	var ok: bool = Inventory.add_item(item)
-	print("[pickup ", name, "] додано в інвентар: ", ok)
-	if ok:
+	if Inventory.add_item(item):
 		Game.set_flag(_flag)
 		queue_free()
 	else:

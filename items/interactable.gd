@@ -57,8 +57,12 @@ func _apply_zone() -> void:
 	rect.size = zone_size
 	cs.shape = rect
 
+## Чи підходить цей предмет до об'єкта (для підсвітки під час перетягування)
+func accepts(item: ItemData) -> bool:
+	return not _done and required_item != null and item != null and item.id == required_item.id
+
 func use_item(item: ItemData) -> bool:
-	if _done or required_item == null or item.id != required_item.id:
+	if not accepts(item):
 		return false
 	_done = true
 	_drop_pos = get_global_mouse_position()

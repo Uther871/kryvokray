@@ -1,6 +1,11 @@
 extends Node
 
 const FADE_TIME := 0.12
+const DRAG_BOOST := 1.25
+
+## Предмет, який зараз тягнуть з інвентарю (null, якщо нічого не тягнуть).
+## Поки тягнуть, підсвічуються лише ті об'єкти, на які цей предмет можна застосувати.
+var drag_item: ItemData = null
 
 var _entries := {}
 var _hovered := {}
@@ -29,8 +34,13 @@ func _physics_process(_delta: float) -> void:
 	query.collide_with_bodies = false
 	var now := {}
 	for hit in viewport.world_2d.direct_space_state.intersect_point(query, 32):
-		if _entries.has(hit.collider):
-			now[hit.collider] = true
+		var c = hit.collider
+		if not _entries.has(c):
+			continue
+		if drag_item == null:
+			now[c] = true
+		elif c.has_method("accepts") and c.accepts(drag_item):
+			now[c] = true
 	for area in now:
 		if not _hovered.has(area):
 			_fade(area, true)
@@ -48,6 +58,8 @@ func _fade(area: Area2D, on: bool) -> void:
 		e["tween"].kill()
 	var base: Color = e["base"]
 	var s: float = e["strength"]
+	if drag_item != null:
+		s *= DRAG_BOOST
 	var color := Color(base.r * s, base.g * s, base.b * s, base.a) if on else base
 	e["tween"] = target.create_tween()
 	e["tween"].tween_property(target, "modulate", color, FADE_TIME)
