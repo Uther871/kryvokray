@@ -15,6 +15,8 @@ signal used
 @export var spawn_scale := 4.0
 @export var highlight_target: CanvasItem
 @export var hover_strength := 1.35
+## Ключ для особливих реплік Чечека (див. replies.gd), напр. "river" або "swamp"
+@export var reply_key: StringName = &""
 ## Розмір зони кліку в пікселях. (0,0) = лишити форму із заготовки.
 @export var zone_size := Vector2.ZERO:
 	set(value):
@@ -56,6 +58,10 @@ func _apply_zone() -> void:
 	var rect := RectangleShape2D.new()
 	rect.size = zone_size
 	cs.shape = rect
+
+## Чи вже використаний цей об'єкт
+func is_used() -> bool:
+	return _done
 
 ## Чи підходить цей предмет до об'єкта (для підсвітки під час перетягування)
 func accepts(item: ItemData) -> bool:

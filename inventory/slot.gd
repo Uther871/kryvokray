@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const Replies = preload("res://replies.gd")
+
 const GLOW_COLOR := Color(1.0, 0.82, 0.35)
 
 @onready var icon: TextureRect = $Icon
@@ -68,8 +70,25 @@ func _try_use_on_world() -> void:
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
 
+	var found_target: Node = null
 	for hit in get_world_2d().direct_space_state.intersect_point(query):
 		var target = hit.collider
-		if target.has_method("use_item") and target.use_item(item):
-			set_item(null)
-			return
+		if target.has_method("use_item"):
+			if target.use_item(item):
+				Replies.reset()
+				set_item(null)
+				return
+			if found_target == null:
+				found_target = target
+
+	# Предмет відпустили не на підходящий об'єкт. Якщо це просто повернення на панель інвентарю — мовчимо.
+	var bar := Inventory.get_node_or_null("Bar") as Control
+	if bar and bar.get_global_rect().has_point(screen_pos):
+		return
+	var line: String
+	if found_target == null:
+		line = Replies.pick(str(item.id), "", "empty")
+	else:
+		var used: bool = found_target.has_method("is_used") and found_target.is_used()
+		line = Replies.pick(str(item.id), str(found_target.get("reply_key")), "target", used)
+	Game.say(line)

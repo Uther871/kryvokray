@@ -51,6 +51,7 @@ spawn_scene = ExtResource("6_c7op4")
 spawn_item = ExtResource("7_plank")
 spawn_scale = 9.0
 highlight_target = NodePath("../Swamp")
+reply_key = &"swamp"
 zone_size = Vector2(1920, 360)
 
 [node name="ExitBack" parent="." instance=ExtResource("8_exit")]

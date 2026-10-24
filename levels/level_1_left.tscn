@@ -44,17 +44,18 @@ result_offset = Vector2(0, 230)
 result_scale = Vector2(10, 10)
 sets_flag = &"plank_used"
 invisible_zone = true
-highlight_target = NodePath("../River")
+reply_key = &"river"
 zone_size = Vector2(500, 1080)
 
 [node name="Chechek" type="Node2D" parent="." unique_id=499101436]
-z_index = 11
+z_index = 2
 position = Vector2(1700, 740)
 script = ExtResource("2_chechek")
 min_x = 450.0
 unlock_flag = &"plank_used"
 
 [node name="Sprite2D" type="Sprite2D" parent="Chechek" unique_id=635877765]
+z_index = 3
 position = Vector2(102, -115)
 scale = Vector2(8.993, 9)
 texture = ExtResource("3_chechek")
@@ -74,7 +75,8 @@ region_rect = Rect2(2240, 0, 1600, 1080)
 
 [node name="ExitLevel2" parent="." unique_id=835422719 instance=ExtResource("7_exit")]
 z_index = 12
-position = Vector2(327, 540)
+position = Vector2(245, 540)
+scale = Vector2(3, 2)
 target_scene = "res://levels/level_2.tscn"
 requires_flag = &"plank_used"
 
