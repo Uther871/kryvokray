@@ -33,6 +33,7 @@ region_enabled = true
 region_rect = Rect2(3849, 0, 1112, 1200)
 
 [node name="GateOpen" type="Sprite2D" parent="." unique_id=909163878]
+visible = false
 position = Vector2(385, -120)
 texture = ExtResource("2_bg")
 centered = false

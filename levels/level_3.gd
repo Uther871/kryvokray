@@ -6,6 +6,9 @@ extends Node2D
 @onready var gate_open: Sprite2D = $GateOpen
 
 func _ready() -> void:
+	# На старті видно лише замкнену браму, незалежно від того, що ввімкнено в редакторі
+	gate_closed.visible = true
+	gate_open.visible = false
 	if Game.has_flag(&"gate_open"):
 		_open(true)
 	else:

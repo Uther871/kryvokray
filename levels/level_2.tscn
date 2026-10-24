@@ -66,8 +66,8 @@ flicker = 0.12
 
 [node name="Steam" parent="." unique_id=1064596052 instance=ExtResource("90_steam")]
 
-[node name="ExitRight" parent="." instance=ExtResource("92_exit")]
-position = Vector2(1845, 540)
+[node name="ExitLeft" parent="." instance=ExtResource("92_exit")]
+position = Vector2(75, 540)
 target_scene = "res://levels/level_3.tscn"
-spawn_x = 150.0
+spawn_x = 300.0
 requires_flag = &"grets_ally"
