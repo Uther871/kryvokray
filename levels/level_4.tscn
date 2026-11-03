@@ -1,18 +1,19 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cq1sskde402h7"]
 
-[node name="Level4" type="Node2D"]
+[node name="Level4" type="Node2D" unique_id=947769458]
 
-[node name="Bg" type="ColorRect" parent="."]
+[node name="Bg" type="ColorRect" parent="." unique_id=1299910173]
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0.12, 0.02, 0.03, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=333074321]
 offset_left = 560.0
 offset_top = 480.0
 offset_right = 1360.0
 offset_bottom = 600.0
 theme_override_font_sizes/font_size = 56
-text = "Рівень 4 (заглушка)"
+text = "пішов нахуй
+"
 horizontal_alignment = 1

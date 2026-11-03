@@ -45,7 +45,7 @@ position = Vector2(1845, 540)
 target_scene = "res://levels/level_1_right.tscn"
 spawn_x = 150.0
 
-[node name="Ambient" type="CanvasModulate" parent="."]
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=58261899]
 color = Color(0.62, 0.55, 0.62, 1)
 
-[node name="Steam" parent="." instance=ExtResource("90_steam")]
+[node name="Steam" parent="." unique_id=317072155 instance=ExtResource("90_steam")]
