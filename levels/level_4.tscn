@@ -1,19 +1,63 @@
 [gd_scene format=3 uid="uid://cq1sskde402h7"]
 
-[node name="Level4" type="Node2D" unique_id=947769458]
+[ext_resource type="Texture2D" uid="uid://cxnoslyk7d83q" path="res://assets/bachground_lvl4.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://b7u804svpqvi0" path="res://assets/Grets.png" id="3_grets"]
+[ext_resource type="Texture2D" uid="uid://cunu25n2f8fsw" path="res://assets/Guard_kk.png" id="4_guard"]
+[ext_resource type="Script" uid="uid://by5khs2odwmck" path="res://levels/grets_player.gd" id="5_player"]
+[ext_resource type="Script" uid="uid://bytharsmcgtw3" path="res://characters/npc.gd" id="6_npc"]
+[ext_resource type="Script" uid="uid://by46rebtmfmf6" path="res://dialogue/scene4_guard.gd" id="7_dialogue"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="8_steam"]
+[ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="9_light"]
 
-[node name="Bg" type="ColorRect" parent="." unique_id=1299910173]
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0.12, 0.02, 0.03, 1)
+[sub_resource type="RectangleShape2D" id="GuardShape"]
+size = Vector2(180, 250)
 
-[node name="Label" type="Label" parent="." unique_id=333074321]
-offset_left = 560.0
-offset_top = 480.0
-offset_right = 1360.0
-offset_bottom = 600.0
-theme_override_font_sizes/font_size = 56
-text = "пішов нахуй
-"
-horizontal_alignment = 1
+[node name="Level4" type="Node2D" unique_id=239992661]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=216658461]
+scale = Vector2(6, 6)
+texture = ExtResource("2_bg")
+centered = false
+
+[node name="Ambient" type="CanvasModulate" parent="." unique_id=1547356793]
+color = Color(0.8, 0.58, 0.62, 1)
+
+[node name="Grets" type="Node2D" parent="." unique_id=583583310]
+position = Vector2(390, 810)
+script = ExtResource("5_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Grets" unique_id=1982075905]
+position = Vector2(0, -112)
+scale = Vector2(9, 9)
+texture = ExtResource("3_grets")
+
+[node name="Camera2D" type="Camera2D" parent="Grets/Sprite2D" unique_id=676079176]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Guard" type="Area2D" parent="." unique_id=221050269]
+position = Vector2(1380, 810)
+script = ExtResource("6_npc")
+dialogue = ExtResource("7_dialogue")
+stop_distance = 185.0
+reply_key = &"guard"
+
+[node name="Sprite2D" type="Sprite2D" parent="Guard" unique_id=988531484]
+position = Vector2(0, -112)
+scale = Vector2(9, 9)
+texture = ExtResource("4_guard")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guard" unique_id=1186914215]
+position = Vector2(0, -112)
+shape = SubResource("GuardShape")
+
+[node name="TorchLight" parent="." unique_id=1927235357 instance=ExtResource("9_light")]
+position = Vector2(1515, 480)
+color = Color(1, 0.16, 0.06, 1)
+energy = 1.5
+texture_scale = 3.0
+flicker = 0.18
+
+[node name="Steam" parent="." unique_id=1266384625 instance=ExtResource("8_steam")]
