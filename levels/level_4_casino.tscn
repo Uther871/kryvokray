@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://pc6mnyyyclxy" path="res://assets/Background4_2.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://b7u804svpqvi0" path="res://assets/Grets.png" id="2_grets"]
+[ext_resource type="Script" uid="uid://by5khs2odwmck" path="res://levels/grets_player.gd" id="3_player"]
+[ext_resource type="Script" path="res://levels/casino_door.gd" id="4_door"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="5_exit"]
+[ext_resource type="PackedScene" path="res://fx/steam.tscn" id="6_steam"]
+
+[sub_resource type="RectangleShape2D" id="DoorShape"]
+size = Vector2(340, 330)
+
+[node name="Level4Casino" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("1_bg")
+centered = false
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.8, 0.58, 0.62, 1)
+
+[node name="CasinoDoor" type="Area2D" parent="."]
+position = Vector2(1025, 710)
+script = ExtResource("4_door")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CasinoDoor"]
+shape = SubResource("DoorShape")
+
+[node name="Grets" type="Node2D" parent="."]
+position = Vector2(1700, 810)
+script = ExtResource("3_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Grets"]
+position = Vector2(0, -112)
+scale = Vector2(9, 9)
+texture = ExtResource("2_grets")
+
+[node name="Camera2D" type="Camera2D" parent="Grets/Sprite2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Steam" parent="." instance=ExtResource("6_steam")]
+
+[node name="ExitRight" parent="." instance=ExtResource("5_exit")]
+position = Vector2(1845, 540)
+target_scene = "res://levels/level_4.tscn"
+spawn_x = 150.0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cq1sskde402h7"]
 
-[ext_resource type="Texture2D" uid="uid://cxnoslyk7d83q" path="res://assets/bachground_lvl4.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://d2ghxrpvlaq2v" path="res://assets/bachground_lvl4-export.png" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://b7u804svpqvi0" path="res://assets/Grets.png" id="3_grets"]
 [ext_resource type="Texture2D" uid="uid://cunu25n2f8fsw" path="res://assets/Guard_kk.png" id="4_guard"]
 [ext_resource type="Script" uid="uid://by5khs2odwmck" path="res://levels/grets_player.gd" id="5_player"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://by46rebtmfmf6" path="res://dialogue/scene4_guard.gd" id="7_dialogue"]
 [ext_resource type="PackedScene" path="res://fx/steam.tscn" id="8_steam"]
 [ext_resource type="PackedScene" path="res://fx/light_source.tscn" id="9_light"]
+[ext_resource type="PackedScene" uid="uid://crd52ln6gymk1" path="res://levels/exit.tscn" id="10_exit"]
 
 [sub_resource type="RectangleShape2D" id="GuardShape"]
 size = Vector2(180, 250)
@@ -61,3 +62,8 @@ texture_scale = 3.0
 flicker = 0.18
 
 [node name="Steam" parent="." unique_id=1266384625 instance=ExtResource("8_steam")]
+
+[node name="ExitCasino" parent="." instance=ExtResource("10_exit")]
+position = Vector2(75, 540)
+target_scene = "res://levels/level_4_casino.tscn"
+spawn_x = 1700.0
